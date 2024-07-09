@@ -180,13 +180,25 @@ TARGET_SPRITE_SELF = {
     "palette": shapes.get_palette((50, 100, 200)),
     "noRotate": True,
 }
-
-TARGET_SPRITE_OTHER = {
+# added by LC for Hypothetical Minds - modify color of different sprites
+TARGET_SPRITE_OTHER = [{
     "name": "Other",
     "shape": shapes.CUTE_AVATAR,
     "palette": shapes.get_palette((200, 100, 50)),
     "noRotate": True,
-}
+    },
+    {
+    "name": "Other",
+    "shape": shapes.CUTE_AVATAR,
+    "palette": shapes.get_palette((205, 5, 165)),
+    "noRotate": True,
+    }]
+# TARGET_SPRITE_OTHER = {
+#     "name": "Other",
+#     "shape": shapes.CUTE_AVATAR,
+#     "palette": shapes.get_palette((200, 100, 50)),
+#     "noRotate": True,
+# }
 
 
 def create_scene():
@@ -512,7 +524,9 @@ def create_avatar_objects(num_players,
         player_idx,
         all_source_sprite_names,
         TARGET_SPRITE_SELF,
-        TARGET_SPRITE_OTHER,
+        # added by LC for Hypothetical Minds - modify color of different sprites
+        TARGET_SPRITE_OTHER[player_idx],
+        #TARGET_SPRITE_OTHER,
         turn_off_default_reward=turn_off_default_reward)
     avatar_objects.append(game_object)
     readiness_marker = the_matrix.create_ready_to_interact_marker(player_idx)
@@ -526,7 +540,12 @@ def create_world_sprite_map(
   all_source_sprite_names = get_all_source_sprite_names(num_players)
   world_sprite_map = {}
   for name in all_source_sprite_names:
-    world_sprite_map[name] = target_sprite_other["name"]
+    #world_sprite_map[name] = target_sprite_other["name"]
+    # added by LC for Hypothetical Minds - modify color of different sprites
+    if name == "Avatar1":
+      world_sprite_map[name] = 'Self'
+    else:
+      world_sprite_map[name] = 'Other'
 
   return world_sprite_map
 

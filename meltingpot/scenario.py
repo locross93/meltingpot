@@ -47,6 +47,8 @@ SCENARIOS_BY_SUBSTRATE = _scenarios_by_substrate()
 PERMITTED_OBSERVATIONS = frozenset({
     # The primary visual input.
     'RGB',
+    # Global visual data - added by LC for Hypothetical Minds
+    'WORLD.RGB',
     # Extra observations used in some substrates.
     'HUNGER',
     'INVENTORY',
